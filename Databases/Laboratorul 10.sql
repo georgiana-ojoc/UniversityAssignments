@@ -1,0 +1,11 @@
+SET LINESIZE 200;
+SET PAGESIZE 100;
+/*1*/ SELECT * FROM studenti s1 WHERE EXISTS (SELECT '' FROM studenti s2 WHERE s1.an = s2.an AND s1.data_nastere < s2.data_nastere) ORDER BY an, data_nastere, nume, prenume;
+/*2*/ SELECT nume, prenume, an, AVG(valoare) medie FROM studenti s1 NATURAL JOIN note n1 GROUP BY nr_matricol, nume, prenume, an HAVING NOT EXISTS (SELECT AVG(valoare) FROM studenti s2 NATURAL JOIN note n2 GROUP BY nr_matricol, an HAVING s1.an = s2.an AND AVG(n1.valoare) < AVG(n2.valoare)) ORDER BY an, nume, prenume;
+/*3*/ SELECT nume, prenume, an, grupa, AVG(valoare) medie FROM studenti s1 NATURAL JOIN note GROUP BY nr_matricol, nume, prenume, an, grupa HAVING AVG(valoare) >= (SELECT AVG(valoare) FROM studenti s2 NATURAL JOIN note WHERE s1.an = s2.an AND s1.grupa = s2.grupa) ORDER BY an, grupa, nume, prenume;
+/*4*/ SELECT * FROM studenti s1 JOIN note n1 ON s1.nr_matricol = n1.nr_matricol WHERE EXISTS (SELECT '' FROM studenti s2 JOIN note n2 ON s2.nr_matricol = n2.nr_matricol WHERE s1.nr_matricol <> s2.nr_matricol AND s1.an = s2.an AND n1.id_curs = n2.id_curs AND n1.valoare = n2.valoare) ORDER BY an, id_curs, valoare;
+/*5*/ SELECT * FROM studenti s1 WHERE NOT EXISTS (SELECT '' FROM studenti s2 WHERE s1.nr_matricol <> s2.nr_matricol AND s1.an = s2.an AND s1.grupa = s2.grupa) ORDER BY an, grupa;
+/*6*/ SELECT p1.id_prof, nume, prenume, AVG(valoare) medie FROM profesori p1 JOIN didactic d1 ON p1.id_prof = d1.id_prof JOIN note n1 ON d1.id_curs = n1.id_curs GROUP BY p1.id_prof, nume, prenume HAVING EXISTS (SELECT '' FROM profesori p2 JOIN didactic d2 ON p2.id_prof = d2.id_prof JOIN note n2 ON d2.id_curs = n2.id_curs GROUP BY p2.id_prof HAVING p1.id_prof <> p2.id_prof AND AVG(n1.valoare) = AVG(n2.valoare)) ORDER BY medie, p1.id_prof;
+/*7*/ SELECT s.nr_matricol, nume, prenume, AVG(valoare) medie FROM studenti s, note n WHERE s.nr_matricol = n.nr_matricol GROUP BY s.nr_matricol, nume, prenume ORDER BY medie DESC;
+/*8*/   SELECT * FROM cursuri WHERE (an, credite) IN (SELECT an, MAX(credite) FROM cursuri GROUP BY an) ORDER BY an, semestru;
+        SELECT * FROM cursuri c1 WHERE credite >= (SELECT MAX(credite) FROM cursuri c2 WHERE c1.an = c2.an) ORDER BY an, semestru;

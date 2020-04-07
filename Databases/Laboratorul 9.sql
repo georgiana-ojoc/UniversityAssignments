@@ -1,0 +1,12 @@
+SET LINESIZE 200;
+SET PAGESIZE 100;
+/*1*/ SELECT nume, prenume FROM studenti WHERE bursa = (SELECT MAX(bursa) FROM studenti);
+/*2*/ SELECT an, grupa, nume, prenume FROM studenti WHERE (an, grupa) IN (SELECT an, grupa FROM studenti WHERE nume = 'Arhire');
+/*3*/ SELECT DISTINCT an, grupa, nume, prenume, valoare FROM studenti NATURAL JOIN note WHERE (an, grupa, valoare) IN (SELECT an, grupa, MIN(valoare) FROM note NATURAL JOIN studenti GROUP BY an, grupa);
+/*4*/ SELECT nume, prenume, AVG(valoare) medie FROM studenti NATURAL JOIN note GROUP BY nr_matricol, nume, prenume HAVING AVG(valoare) > (SELECT AVG(valoare) FROM note);
+/*5*/ SELECT nume, prenume, medie FROM (SELECT nume, prenume, AVG(valoare) medie FROM studenti NATURAL JOIN note GROUP BY nr_matricol, nume, prenume ORDER BY AVG(valoare) DESC) WHERE ROWNUM < 4;
+/*6*/ SELECT nume, prenume, AVG(valoare) medie FROM studenti NATURAL JOIN note GROUP BY nr_matricol, nume, prenume HAVING AVG(valoare) = (SELECT MAX(medie) FROM (SELECT AVG(valoare) medie FROM note GROUP BY nr_matricol));
+/*7*/ SELECT nume, prenume, valoare FROM studenti NATURAL JOIN note n JOIN cursuri c ON n.id_curs = c.id_curs WHERE titlu_curs = 'Logica' AND valoare = (SELECT valoare FROM studenti NATURAL JOIN (note NATURAL JOIN cursuri) WHERE titlu_curs = 'Logica' AND nume = 'Ciobotariu' AND prenume = 'Ciprian') AND nr_matricol <> (SELECT nr_matricol FROM studenti WHERE nume = 'Ciobotariu' AND prenume = 'Ciprian');
+/*8*/ SELECT prenume FROM (SELECT prenume, ROWNUM rand FROM (SELECT prenume FROM studenti ORDER BY prenume) WHERE ROWNUM < 6) WHERE rand = 5;
+/*9*/ SELECT * FROM studenti NATURAL JOIN (SELECT nr_matricol FROM (SELECT nr_matricol, ROWNUM rand FROM (SELECT nr_matricol FROM studenti NATURAL JOIN (note NATURAL JOIN cursuri) GROUP BY nr_matricol ORDER BY SUM(valoare * credite) DESC) WHERE ROWNUM < 4) WHERE rand = 3);
+/*10*/ SELECT nume, prenume, titlu_curs, valoare FROM studenti s JOIN note n ON s.nr_matricol = n.nr_matricol JOIN cursuri c ON n.id_curs = c.id_curs GROUP BY c.id_curs, titlu_curs, valoare, nume, prenume HAVING valoare = (SELECT MAX(valoare) FROM cursuri NATURAL JOIN note GROUP BY id_curs HAVING c.id_curs = id_curs) ORDER BY c.id_curs, valoare DESC, nume, prenume;

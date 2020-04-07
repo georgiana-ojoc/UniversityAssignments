@@ -1,0 +1,11 @@
+SET LINESIZE 200;
+SET PAGESIZE 100;
+SELECT table_name FROM user_tables;
+/*1*/ SELECT s.nume, s.prenume, n.valoare, p.nume, p.prenume FROM studenti s JOIN note n ON s.nr_matricol = n.nr_matricol JOIN didactic d ON n.id_curs = d.id_curs JOIN profesori p ON d.id_prof = p.id_prof;
+/*2*/ SELECT s.nume, s.prenume FROM studenti s JOIN note n ON s.nr_matricol = n.nr_matricol JOIN cursuri c ON n.id_curs = c.id_curs WHERE n.valoare = 10 AND UPPER(c.titlu_curs) = 'BD';
+/*3*/ SELECT p.nume, p.prenume, c.titlu_curs FROM profesori p JOIN didactic d ON p.id_prof = d.id_prof JOIN cursuri c ON d.id_curs = c.id_curs;
+/*4*/ SELECT p.nume, p.prenume, c.titlu_curs FROM profesori p LEFT OUTER JOIN didactic d ON p.id_prof = d.id_prof LEFT OUTER JOIN cursuri c ON d.id_curs = c.id_curs;
+/*5*/ SELECT p.nume, p.prenume, c.titlu_curs FROM profesori p RIGHT OUTER JOIN didactic d ON p.id_prof = d.id_prof RIGHT OUTER JOIN cursuri c ON d.id_curs = c.id_curs;
+/*6*/ SELECT p.nume, p.prenume, c.titlu_curs FROM profesori p LEFT OUTER JOIN didactic d ON p.id_prof = d.id_prof FULL OUTER JOIN cursuri c ON d.id_curs = c.id_curs /*WHERE d.id_curs IS NULL*/;
+/*7*/ SELECT s1.nume || ' - ' || s2.nume "Studenti", TO_CHAR(s1.data_nastere, 'Day') "Zi din saptamana" FROM studenti s1 JOIN studenti s2 ON TO_CHAR(s1.data_nastere, 'Day') = TO_CHAR(s2.data_nastere, 'Day') WHERE s1.nr_matricol != s2.nr_matricol AND s1.nr_matricol < s2.nr_matricol ORDER by TO_CHAR(s1.data_nastere, 'D'), s1.nume;
+/*8*/ SELECT s1.nume || ' ' || s1.prenume || ' a luat nota mai mare ca ' || s2.nume || ' ' || s2.prenume || ' la materia ' || c.titlu_curs AS "Studenti" FROM studenti s1 JOIN studenti s2 ON s1.nr_matricol != s2.nr_matricol JOIN note n1 ON s1.nr_matricol = n1.nr_matricol JOIN note n2 ON s2.nr_matricol = n2.nr_matricol JOIN cursuri c ON n1.id_curs = c.id_curs AND n2.id_curs = c.id_curs WHERE n1.valoare > n2.valoare;
