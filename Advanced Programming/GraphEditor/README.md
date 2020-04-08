@@ -1,18 +1,11 @@
-# Document Management System (Maven Project)
-Implemented a shell to manage a serialized catalog of documents (used Singleton for shell and Command for commands as design patterns)  
-The shell includes the following commands:  
- - help - show commands  
- - create <name> <path> - create catalog with specified name and path  
- - add-doc <id> <name> <location> - add document with unique ID and name from specified location  
- - add-tag <id> <key> <value> - add tag to document specified by ID  
- - save - save catalog at his specified path  
- - load <path> - load catalog from specified path  
- - list - print catalog and documents information  
- - view <id> - open document specified by ID  
- - info <path> - print file metadata (used Apache Tika)  
- - report [html] <path> - create and save html report at specified path (used FreeMarker)  
- - exit - close shell  
-Use the following command to open the shell after creating the JAR:  
+# Graph Editor (Maven Project)
+Created an MVC application with graphical user interface for creating graphs using Swing  
+The user can change node shapes (circle, rounded square or star) and graph colors  
+By simple-left-clicking he can put a node on the canvas and delete it by double-left-clicking on it  
+By simple-right-clicking he can draw an edge between two nodes and delete it by double-right-clicking on or near it  
+He can also save his drawing or load an existent graph from the external memory  
+Implemented the Fruchterman-Reingold force-directed layout algorithm that can be applied on the drawn graphs  
+Use the following command to open the editor after creating the JAR:  
 ```
-java -jar DMS-1.0-jar-with-dependencies.jar
+java -jar GraphEditor-1.0.jar
 ```
