@@ -1,0 +1,35 @@
+Linear Feedback Shift Register pseudorandom number generator
+
+Number of 0: 16425 (50.13%)
+Number of 1: 16343 (49.87%)
+Difference: 82
+
+Compression rate for this: 4565
+Compression rate for random 0-1 string: 3288
+Compression rate for 11...1: 255
+
+Running time: 0.4305460453033447 seconds
+
+Blum-Blum-Shub pseudorandom number generator
+
+Number of 0: 16394 (50.03%)
+Number of 1: 16374 (49.97%)
+Difference: 20
+
+Compression rate for this: 4562
+Compression rate for random 0-1 string: 3287
+Compression rate for 11...1: 255
+
+Running time: 0.24032163619995117 seconds
+
+Jacobi pseudorandom number generator
+
+Number of 0: 16532 (50.45%)
+Number of 1: 16236 (49.55%)
+Difference: 296
+
+Compression rate for this: 4568
+Compression rate for random 0-1 string: 3282
+Compression rate for 11...1: 255
+
+Running time: 6.796128511428833 seconds
