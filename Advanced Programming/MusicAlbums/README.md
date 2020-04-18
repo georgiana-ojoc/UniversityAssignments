@@ -6,7 +6,7 @@ Computed the ranking of artists, considering their positions in charts
 Created HTML reports with FreeMarker  
 Used HikariConnectionPool and ThreadPoolExecutor to create 5000 threads that access the database concurrently  
 Analyzed the behaviour of the application in VisualVM  
-Use the following command to open the editor after creating the JAR:  
+Use the following command to open the application after creating the JAR:  
 ```
 java -jar MusicAlbums-1.0-jar-with-dependencies.jar
 ```
