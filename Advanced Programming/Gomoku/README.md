@@ -13,7 +13,7 @@ Once a game is finished, a HTML containing the game actions is uploaded on fenri
 The AI player tries to complete his 5-piece row or column or to block opponent's ones.  
 Use the following command to open the server after creating the JAR:  
 ```
-java -jar Server1.0-jar-with-dependencies.jar
+java -jar Server1.0.jar
 ```
 Use the following command to open a client after creating the JAR:  
 ```
