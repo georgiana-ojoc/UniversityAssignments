@@ -1,5 +1,10 @@
 package gomoku.server;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import gomoku.communication.Communication;
+import gomoku.dtos.rooms.RoomCreateDTO;
+import gomoku.dtos.rooms.RoomUpdateDTO;
 import gomoku.game.Room;
 import gomoku.game.Round;
 import gomoku.rmi.RMIService;
@@ -36,6 +41,8 @@ public class GameServer {
     }
 
     private void createCommands() {
+        commands.add("register <username> <password>");
+        commands.add("login <username> <password>");
         commands.add("list-commands");
         commands.add("list-available-rooms");
         commands.add("create-room-single");
@@ -43,6 +50,7 @@ public class GameServer {
         commands.add("join-room <room identifier>");
         commands.add("add-piece <row> <column>");
         commands.add("stop-round");
+        commands.add("logout");
         commands.add("exit");
     }
 
@@ -87,10 +95,16 @@ public class GameServer {
         return availableRooms;
     }
 
-    public String createRoom(int playersNumber) {
+    public String createRoom(String jwt, int playersNumber) {
         String identifier = generateRandomString();
         synchronized (rooms) {
             rooms.put(identifier, new Room(this, identifier, playersNumber));
+            try {
+                String request = new ObjectMapper().writeValueAsString(new RoomCreateDTO(identifier));
+                Communication.post("rooms", request, jwt);
+            } catch (JsonProcessingException exception) {
+                System.out.println(exception.getMessage());
+            }
         }
         return "The room with identifier " + identifier + " was created successfully.";
     }
@@ -99,7 +113,8 @@ public class GameServer {
         rooms.remove(identifier);
     }
 
-    public synchronized Pair<String, Room> joinRoom(String identifier, Socket clientSocket, BufferedReader bufferedReader,
+    public synchronized Pair<String, Room> joinRoom(String username, String jwt, String identifier,
+                                                    Socket clientSocket, BufferedReader bufferedReader,
                                                     PrintWriter printWriter) {
         Room room = rooms.get(identifier);
         if (room == null) {
@@ -109,6 +124,22 @@ public class GameServer {
             return new Pair<>("The room is full.", null);
         }
         room.addPlayer(clientSocket, bufferedReader, printWriter);
+        RoomUpdateDTO roomUpdate = room.getRoomUpdateDTO();
+        if (room.getRoomUpdateDTO().getFirstPlayer() == null) {
+            roomUpdate.setFirstPlayer(username);
+            if (room.isFull()) {
+                roomUpdate.setSecondPlayer("computer");
+            }
+        }
+        else {
+            roomUpdate.setSecondPlayer(username);
+        }
+        try {
+            String request = new ObjectMapper().writeValueAsString(roomUpdate);
+            Communication.put("rooms/" + identifier, request, jwt);
+        } catch (JsonProcessingException exception) {
+            System.out.println(exception.getMessage());
+        }
         return new Pair<>("The player has joined the room with identifier " + identifier + " successfully.", room);
     }
 

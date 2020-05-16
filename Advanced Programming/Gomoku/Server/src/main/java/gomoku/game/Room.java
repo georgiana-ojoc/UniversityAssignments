@@ -1,6 +1,7 @@
 package gomoku.game;
 
 import com.jcraft.jsch.*;
+import gomoku.dtos.rooms.RoomUpdateDTO;
 import gomoku.server.GameServer;
 import javafx.util.Pair;
 
@@ -18,6 +19,7 @@ public class Room {
     private List<BufferedReader> bufferedReaders;
     private List<PrintWriter> printWriters;
     private List<String> messages;
+    private RoomUpdateDTO roomUpdate;
 
     public Room(GameServer gameServer, String identifier, int playersNumber) {
         this.gameServer = gameServer;
@@ -27,6 +29,7 @@ public class Room {
         bufferedReaders = new ArrayList<>();
         printWriters = new ArrayList<>();
         messages = new ArrayList<>();
+        roomUpdate = new RoomUpdateDTO();
     }
 
     public GameServer getGameServer() {
@@ -39,6 +42,10 @@ public class Room {
 
     public List<Socket> getClientSockets() {
         return clientSockets;
+    }
+
+    public RoomUpdateDTO getRoomUpdateDTO() {
+        return roomUpdate;
     }
 
     public void addPlayer(Socket clientSocket, BufferedReader bufferedReader, PrintWriter printWriter) {
@@ -92,6 +99,12 @@ public class Room {
                 if (message.contains("won")) {
                     notifyWinner(currentPlayer);
                     notifyLoser(3 - currentPlayer);
+                    if (currentPlayer == 1) {
+                        roomUpdate.setWinner(roomUpdate.getFirstPlayer());
+                    }
+                    else {
+                        roomUpdate.setWinner(roomUpdate.getSecondPlayer());
+                    }
                     break;
                 }
                 continue;
@@ -132,6 +145,7 @@ public class Room {
                 if (message.contains("won")) {
                     if (currentPlayer == 1) {
                         notifyWinner(currentPlayer);
+                        roomUpdate.setWinner(roomUpdate.getFirstPlayer());
                     }
                     else {
                         notifyLoser(3 - currentPlayer);
@@ -215,9 +229,9 @@ public class Room {
     }
 
     public void sendHTML(String HTML) {
-        String username = "";
+        String username = "georgiana.ojoc";
         String password = "";
-        String host = "";
+        String host = "students.info.uaic.ro";
         InputStream inputStream = new ByteArrayInputStream(HTML.getBytes());
         try {
             JSch jSch = new JSch();
