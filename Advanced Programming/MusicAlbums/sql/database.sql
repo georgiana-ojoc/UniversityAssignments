@@ -1,5 +1,7 @@
 CREATE USER 'dba'@'localhost' IDENTIFIED BY 'sql';
 GRANT ALL PRIVILEGES ON *.* TO 'dba'@'localhost';
+CREATE DATABASE music_albums;
+USE music_albums;
 CREATE TABLE artists
     (id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
