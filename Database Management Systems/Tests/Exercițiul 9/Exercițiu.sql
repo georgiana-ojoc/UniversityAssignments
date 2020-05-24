@@ -39,7 +39,7 @@ BEGIN
     END CASE;
 END;
 /
-CREATE OR REPLACE PROCEDURE creeaza_catalog(p_id_curs cursuri.id%TYPE) AS
+CREATE OR REPLACE FUNCTION creeaza_catalog(p_id_curs cursuri.id%TYPE) RETURN VARCHAR2 AS
     v_cursor            NUMBER;
     v_cursor_insert     NUMBER;
     v_return_value      NUMBER;
@@ -75,12 +75,19 @@ BEGIN
         DBMS_SQL.NATIVE);
     v_return_value := DBMS_SQL.EXECUTE(v_cursor);
 
+    -- Creez indexul pe numele de familie.
+    drop_if_exists(v_curs || '_nume_index', 'index');
+    DBMS_SQL.PARSE(v_cursor, 'CREATE INDEX ' || v_curs || '_nume_index' ||
+                             ' ON ' || v_curs || '(nume)',DBMS_SQL.NATIVE);
+    v_return_value := DBMS_SQL.EXECUTE(v_cursor);
+
     -- Inserez informațiile în catalog.
     v_cursor_insert := DBMS_SQL.OPEN_CURSOR;
     FOR v_record IN (SELECT nr_matricol, nume, prenume, valoare, data_notare
                         FROM studenti JOIN note ON studenti.id = note.id_student
                         JOIN cursuri ON note.id_curs = cursuri.id
-                        WHERE cursuri.id = p_id_curs) LOOP
+                        WHERE cursuri.id = p_id_curs
+                        ORDER BY nr_matricol) LOOP
         DBMS_SQL.PARSE(v_cursor_insert, 'INSERT INTO ' || v_curs || ' VALUES ' ||
                                         '(:nr_matricol, :nume, :prenume, :valoare, :data_notare)',
             DBMS_SQL.NATIVE);
@@ -93,11 +100,13 @@ BEGIN
     END LOOP;
 
     DBMS_SQL.CLOSE_CURSOR(v_cursor);
+
+    RETURN v_curs;
 END;
 /
 DECLARE
     v_id_curs cursuri.id%TYPE;
 BEGIN
     SELECT MAX(id) INTO v_id_curs FROM cursuri;
-    creeaza_catalog(v_id_curs);
+    DBMS_OUTPUT.PUT_LINE(creeaza_catalog(v_id_curs));
 END;
