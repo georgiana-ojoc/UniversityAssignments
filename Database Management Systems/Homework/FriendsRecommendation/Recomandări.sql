@@ -49,10 +49,10 @@ BEGIN
     RETURN v_student_array;
 EXCEPTION
     WHEN student_inexistent THEN
-        RAISE_APPLICATION_ERROR(-20001, 'Studentul cu id-ul' || p_id || ' nu exista in baza de date.');
+        RAISE_APPLICATION_ERROR(-20001, 'Studentul cu id-ul ' || p_id || ' nu exista in baza de date.');
         RETURN NULL;
     WHEN prietenie_inexistenta THEN
-        RAISE_APPLICATION_ERROR(-20002, 'Studentul cu id-ul' || p_id || ' nu are nicio prietenie in baza de date.');
+        RAISE_APPLICATION_ERROR(-20002, 'Studentul cu id-ul ' || p_id || ' nu are nicio prietenie in baza de date.');
         RETURN NULL;
 END recomandari;
 /

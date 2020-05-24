@@ -36,6 +36,9 @@ public class Main {
                 id = resultSet.getInt("id");
             }
             else {
+                resultSet.close();
+                preparedStatement.close();
+                connection.close();
                 throw new Exception("Studentul " + name + ' ' + surname + " din grupa " + group +
                         " nu este in baza de date.");
             }
@@ -49,9 +52,14 @@ public class Main {
                         .replaceAll("}", " }"));
             }
             else {
+                resultSet.close();
+                preparedStatement.close();
+                connection.close();
                 throw new Exception("Studentul " + name + ' ' + surname + " din grupa " + group +
                         " nu are recomandari de prieteni in baza de date.");
             }
+            resultSet.close();
+            preparedStatement.close();
             connection.close();
         }
         catch (Exception exception) {
