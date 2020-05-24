@@ -1,3 +1,5 @@
+SET SERVEROUTPUT ON;
+
 BEGIN
     drop_if_exists('objects', 'table');
 END;
