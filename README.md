@@ -1,5 +1,5 @@
-# University-Assignments
-This repository contains university assignments from different laboratories.  
+# UniversityAssignments
+University assignments from different laboratories  
 Used programming languages:  
  - AP - Java  
  - CN - C  
