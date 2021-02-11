@@ -9,4 +9,5 @@ Used programming languages:
  - IC - Python  
  - IS - C  
  - OOP - C++  
- - PS - R
+ - PS - R  
+ - SCOS - C++
