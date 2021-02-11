@@ -7,5 +7,6 @@ Used programming languages:
  - D - SQL  
  - GA - C++  
  - IC - Python  
+ - IS - C  
  - OOP - C++  
  - PS - R
