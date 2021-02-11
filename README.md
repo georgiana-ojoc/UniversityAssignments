@@ -8,6 +8,7 @@ Used programming languages:
  - GA - C++  
  - IC - Python  
  - IS - C  
+ - ML - Python  
  - OOP - C++  
  - PS - R  
  - SCOS - C++
