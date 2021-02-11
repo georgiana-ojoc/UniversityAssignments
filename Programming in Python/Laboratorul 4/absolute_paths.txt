@@ -1,0 +1,5 @@
+D:\Program Files\Python\include\bitset.h
+D:\Program Files\Python\include\bltinmodule.h
+D:\Program Files\Python\include\boolobject.h
+D:\Program Files\Python\include\bytearrayobject.h
+D:\Program Files\Python\include\bytesobject.h
