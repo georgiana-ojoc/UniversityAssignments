@@ -1,6 +1,7 @@
 # UniversityAssignments
 University assignments from different laboratories  
 Used programming languages:  
+ - AI - Python  
  - AP - Java  
  - CN - C  
  - DMS - PL/SQL  
@@ -9,6 +10,7 @@ Used programming languages:
  - IC - Python  
  - IS - C  
  - ML - Python  
+ - NN - Python  
  - OOP - C++  
  - PP - Python  
  - PS - R  
