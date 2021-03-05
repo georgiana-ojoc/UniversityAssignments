@@ -1,0 +1,15 @@
+{
+  "flickr": {
+    "consumer_key": "",
+    "consumer_secret": "",
+    "access_token": "",
+    "token_secret": ""
+  },
+  "imagga": "",
+  "twitter": {
+    "consumer_key": "",
+    "consumer_secret": "",
+    "access_token": "",
+    "token_secret": ""
+  }
+}
