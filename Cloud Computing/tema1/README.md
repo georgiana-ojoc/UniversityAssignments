@@ -5,5 +5,5 @@
  - logs requests (headers, method, body) and responses (status code, status message, headers, body)  
  - calculates metrics (requests per minute, average latency, number of GET or POST requests, number of responses with 200 or 400 status code)
 # Web interface
- - sends parallel tweet requests
+ - sends parallel tweet requests  
 ![Web interface](https://github.com/georgiana-ojoc/UniversityAssignments/blob/master/Cloud%20Computing/tema1/web-interface.gif)
