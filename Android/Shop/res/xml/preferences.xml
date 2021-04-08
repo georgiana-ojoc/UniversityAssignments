@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Appearance">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="darkMode"
+            android:title="Dark mode" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="rotateScreen"
+            android:title="Rotate screen" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Notifications">
+
+        <EditTextPreference
+            android:key="name"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:summary="Enter your name."
+            android:title="Name" />
+        <EditTextPreference
+            android:key="email"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:summary="Enter your email."
+            android:title="Email" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="notifications"
+            android:summary="You will receive emails about new products."
+            android:title="Enable notifications" />
+    </PreferenceCategory>
+</PreferenceScreen>

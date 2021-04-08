@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Shop</string>
+    <string name="camera">Camera</string>
+    <string name="database">Database</string>
+    <string name="externalStorage">ExternalStorage</string>
+    <string name="internalStorage">InternalStorage</string>
+    <string name="menu">Menu</string>
+    <string name="preferences">Preferences</string>
+    <string name="search">Search</string>
+    <string name="sensors">Sensors</string>
+    <string name="share">Share</string>
+    <string name="sort">Sort</string>
+    <string name="store">Store</string>
+</resources>

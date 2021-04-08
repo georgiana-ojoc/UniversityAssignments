@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/sortMenuItem"
+        android:title="@string/sort" />
+    <item
+        android:id="@+id/storeMenuItem"
+        android:title="@string/store" >
+        <menu >
+            <item
+                android:id="@+id/internalStorage"
+                android:title="@string/internalStorage" />
+            <item
+                android:id="@+id/externalStorage"
+                android:title="@string/externalStorage" />
+            <item
+                android:id="@+id/database"
+                android:title="@string/database" />
+        </menu>
+    </item>
+</menu>
