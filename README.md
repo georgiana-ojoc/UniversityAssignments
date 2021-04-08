@@ -5,6 +5,7 @@ Used programming languages:
  - AI - Python  
  - AP - Java  
  - CC - Node.js (back end), HTML, CSS, JavaScript (front end)  
+ - CG - C++  
  - CN - C  
  - DMS - PL/SQL  
  - D - SQL  
