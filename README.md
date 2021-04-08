@@ -1,6 +1,7 @@
 # UniversityAssignments
 University assignments from different laboratories  
 Used programming languages:  
+ - Android - Java  
  - AI - Python  
  - AP - Java  
  - CC - Node.js (back end), HTML, CSS, JavaScript (front end)  
