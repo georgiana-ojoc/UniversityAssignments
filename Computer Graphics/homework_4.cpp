@@ -63,7 +63,7 @@ public:
         int width = glutGet(GLUT_WINDOW_WIDTH);
         int height = glutGet(GLUT_WINDOW_HEIGHT);
 
-        int length = (int) ((height < width ? height : width) * SCALE);
+        int length = (int) (height < width ? height : width);
         int horizontalMargin = (width - length) / 2;
         if (click.x < horizontalMargin) {
             click.x = 0;
@@ -136,22 +136,22 @@ public:
         }
     }
 
-    static void drawCircle(Point center, double radius, int lines) {
+    static void drawDisk(Point center, double radius, int lines) {
+        glColor3d(0.25, 0.25, 0.25);
         glBegin(GL_POLYGON);
         for (int i = 0; i < lines; i++) {
             double theta = 8.0 * atan(1) * i / lines;
             double x = radius * cos(theta);
             double y = radius * sin(theta);
-            glVertex2f(center.x + x, center.y + y);
+            glVertex2d(center.x + x, center.y + y);
         }
         glEnd();
     }
 
     void drawPixel(Pixel pixel) {
         if (isPixel(pixel)) {
-            glColor3d(0.25, 0.25, 0.25);
             Point point = points[pixel.y][pixel.x];
-            drawCircle(point, cell * CIRCLE, 100);
+            drawDisk(point, cell * CIRCLE, 100);
         }
     }
 
@@ -173,7 +173,7 @@ public:
     }
 };
 
-CartesianGrid cartesianGrid(15, 10);
+CartesianGrid cartesianGrid(10, 15);
 
 double computeSlope(Pixel pixel_1, Pixel pixel_2) {
     return (double) (pixel_2.y - pixel_1.y) / (pixel_2.x - pixel_1.x);
@@ -242,7 +242,6 @@ vector<Pixel> getSecondOctanePixels(Pixel pixel_1, Pixel pixel_2) {
 
     return pixels;
 }
-
 
 vector<Pixel> getSeventhOctanePixels(Pixel pixel_1, Pixel pixel_2) {
     vector<Pixel> pixels;
