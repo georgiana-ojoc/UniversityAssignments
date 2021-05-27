@@ -13,6 +13,7 @@ Used programming languages:
  - IC - Python  
  - IS - C  
  - ML - Python  
+ - NC - Python  
  - NN - Python  
  - OOP - C++  
  - PP - Python  
