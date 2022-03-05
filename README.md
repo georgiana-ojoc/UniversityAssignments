@@ -11,6 +11,7 @@ Used programming languages:
  - D - SQL  
  - GA - C++  
  - IC - Python  
+ - IP - Python  
  - IS - C  
  - ML - Python  
  - NC - Python  
@@ -18,4 +19,6 @@ Used programming languages:
  - OOP - C++  
  - PP - Python  
  - PS - R  
+ - SCAI - R  
+ - SCNN - Python on Google Colab  
  - SCOS - C++
