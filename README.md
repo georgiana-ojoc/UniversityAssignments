@@ -1,24 +1,24 @@
 # UniversityAssignments
 University assignments from different laboratories  
 Used programming languages:  
+ - Advanced Programming - Java  
  - Android - Java  
- - AI - Python  
- - AP - Java  
- - CC - Node.js (back end), HTML, CSS, JavaScript (front end)  
- - CG - C++  
- - CN - C  
- - DMS - PL/SQL  
- - D - SQL  
- - GA - C++  
- - IC - Python  
- - IP - Python  
- - IS - C  
- - ML - Python  
- - NC - Python  
- - NN - Python  
- - OOP - C++  
- - PP - Python  
- - PS - R  
- - SCAI - R  
- - SCNN - Python on Google Colab  
- - SCOS - C++
+ - Artificial Intelligence - Python  
+ - Cloud Computing - Node.js (back-end), HTML, CSS, JavaScript (front-end)  
+ - Computer Graphics - C++  
+ - Computer Networks - C  
+ - Databases - SQL  
+ - Database Management Systems - PL/SQL  
+ - Genetic Algorithms - C++  
+ - Image Processing - Python  
+ - Information Security - C  
+ - Introduction to Cryptography - Python  
+ - Machine Learning - Python  
+ - Neural Networks - Python  
+ - Numerical Calculus - Python  
+ - Object-Oriented Programming - C++  
+ - Probabilities and Statistics - R  
+ - Programming in Python - Python  
+ - Special Chapters of Artificial Intelligence - R  
+ - Special Chapters of Neural Networks - Python on Google Colab  
+ - Special Chapters of Operating Systems - C++
